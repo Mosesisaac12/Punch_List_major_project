@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "E:\\VINRATECH FLUTTER\\flutter_aps\\punch_list\\build\\flutter_plugin_android_lifecycle\\intermediates\\merged_res\\release\\drawable-mdpi-v4\\notification_bg_low_normal.9.png",
+        "source": "C:\\Users\\good\\.gradle\\caches\\transforms-3\\6ea6d753885c891982516fb6f0adaffd\\transformed\\core-1.6.0\\res\\drawable-mdpi-v4\\notification_bg_low_normal.9.png"
+    },
+    {
+        "merged": "E:\\VINRATECH FLUTTER\\flutter_aps\\punch_list\\build\\flutter_plugin_android_lifecycle\\intermediates\\merged_res\\release\\drawable-mdpi-v4\\notification_bg_low_pressed.9.png",
+        "source": "C:\\Users\\good\\.gradle\\caches\\transforms-3\\6ea6d753885c891982516fb6f0adaffd\\transformed\\core-1.6.0\\res\\drawable-mdpi-v4\\notification_bg_low_pressed.9.png"
+    },
+    {
+        "merged": "E:\\VINRATECH FLUTTER\\flutter_aps\\punch_list\\build\\flutter_plugin_android_lifecycle\\intermediates\\merged_res\\release\\drawable-mdpi-v4\\notify_panel_notification_icon_bg.png",
+        "source": "C:\\Users\\good\\.gradle\\caches\\transforms-3\\6ea6d753885c891982516fb6f0adaffd\\transformed\\core-1.6.0\\res\\drawable-mdpi-v4\\notify_panel_notification_icon_bg.png"
+    },
+    {
+        "merged": "E:\\VINRATECH FLUTTER\\flutter_aps\\punch_list\\build\\flutter_plugin_android_lifecycle\\intermediates\\merged_res\\release\\drawable-mdpi-v4\\notification_bg_normal.9.png",
+        "source": "C:\\Users\\good\\.gradle\\caches\\transforms-3\\6ea6d753885c891982516fb6f0adaffd\\transformed\\core-1.6.0\\res\\drawable-mdpi-v4\\notification_bg_normal.9.png"
+    },
+    {
+        "merged": "E:\\VINRATECH FLUTTER\\flutter_aps\\punch_list\\build\\flutter_plugin_android_lifecycle\\intermediates\\merged_res\\release\\drawable-mdpi-v4\\notification_bg_normal_pressed.9.png",
+        "source": "C:\\Users\\good\\.gradle\\caches\\transforms-3\\6ea6d753885c891982516fb6f0adaffd\\transformed\\core-1.6.0\\res\\drawable-mdpi-v4\\notification_bg_normal_pressed.9.png"
+    }
+]

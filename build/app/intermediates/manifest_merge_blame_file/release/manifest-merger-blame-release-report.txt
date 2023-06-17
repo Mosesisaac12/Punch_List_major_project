@@ -1,0 +1,261 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.punch_list"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="20"
+8-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="33" />
+9-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:3:5-66
+11-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:3:22-64
+12    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+12-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:4:5-70
+12-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:4:22-68
+13    <uses-permission android:name="android.permission.INTERNET" />
+13-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:3:5-66
+13-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:3:22-64
+14    <uses-permission android:name="android.permission.BLUETOOTH" />
+14-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:6:5-67
+14-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:6:22-65
+15    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+15-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:7:5-73
+15-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:7:22-71
+16    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+16-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:8:5-75
+16-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:8:22-73
+17
+18    <queries>
+18-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:10:5-14:15
+19        <intent>
+19-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:11:5-13:14
+20            <action android:name="android.speech.RecognitionService" />
+20-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:12:9-68
+20-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:12:17-65
+21        </intent>
+22        <!-- Needs to be explicitly declared on Android R+ -->
+23        <package android:name="com.google.android.apps.maps" />
+23-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\good\.gradle\caches\transforms-3\ec6941a4a6c016637af835cffd5dc1eb\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:33:9-64
+23-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\good\.gradle\caches\transforms-3\ec6941a4a6c016637af835cffd5dc1eb\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:33:18-61
+24    </queries>
+25
+26    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+26-->[:location] E:\VINRATECH FLUTTER\flutter_aps\punch_list\build\location\intermediates\merged_manifest\release\AndroidManifest.xml:9:5-81
+26-->[:location] E:\VINRATECH FLUTTER\flutter_aps\punch_list\build\location\intermediates\merged_manifest\release\AndroidManifest.xml:9:22-78
+27    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- Include required permissions for Google Maps API to run. -->
+27-->[:location] E:\VINRATECH FLUTTER\flutter_aps\punch_list\build\location\intermediates\merged_manifest\release\AndroidManifest.xml:10:5-79
+27-->[:location] E:\VINRATECH FLUTTER\flutter_aps\punch_list\build\location\intermediates\merged_manifest\release\AndroidManifest.xml:10:22-76
+28    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+28-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\good\.gradle\caches\transforms-3\ec6941a4a6c016637af835cffd5dc1eb\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:23:5-79
+28-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\good\.gradle\caches\transforms-3\ec6941a4a6c016637af835cffd5dc1eb\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:23:22-76
+29
+30    <uses-feature
+30-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\good\.gradle\caches\transforms-3\ec6941a4a6c016637af835cffd5dc1eb\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:26:5-28:35
+31        android:glEsVersion="0x00020000"
+31-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\good\.gradle\caches\transforms-3\ec6941a4a6c016637af835cffd5dc1eb\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:27:9-41
+32        android:required="true" />
+32-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\good\.gradle\caches\transforms-3\ec6941a4a6c016637af835cffd5dc1eb\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:28:9-32
+33
+34    <permission
+34-->[androidx.core:core:1.9.0] C:\Users\good\.gradle\caches\transforms-3\d224d9d44abe39b7507c36f9f502df42\transformed\core-1.9.0\AndroidManifest.xml:22:5-24:47
+35        android:name="com.example.punch_list.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+35-->[androidx.core:core:1.9.0] C:\Users\good\.gradle\caches\transforms-3\d224d9d44abe39b7507c36f9f502df42\transformed\core-1.9.0\AndroidManifest.xml:23:9-81
+36        android:protectionLevel="signature" />
+36-->[androidx.core:core:1.9.0] C:\Users\good\.gradle\caches\transforms-3\d224d9d44abe39b7507c36f9f502df42\transformed\core-1.9.0\AndroidManifest.xml:24:9-44
+37
+38    <uses-permission android:name="com.example.punch_list.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+38-->[androidx.core:core:1.9.0] C:\Users\good\.gradle\caches\transforms-3\d224d9d44abe39b7507c36f9f502df42\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
+38-->[androidx.core:core:1.9.0] C:\Users\good\.gradle\caches\transforms-3\d224d9d44abe39b7507c36f9f502df42\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
+39
+40    <application
+41        android:name="android.app.Application"
+41-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:18:9-42
+42        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+42-->[androidx.core:core:1.9.0] C:\Users\good\.gradle\caches\transforms-3\d224d9d44abe39b7507c36f9f502df42\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
+43        android:icon="@mipmap/ic_launcher"
+43-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:19:9-43
+44        android:label="punch_list" >
+44-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:17:9-35
+45        <meta-data
+45-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:20:9-21:47
+46            android:name="com.google.android.geo.API_KEY"
+46-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:20:20-65
+47            android:value="YOUR KEY HERE" />
+47-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:21:16-45
+48
+49        <activity
+49-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:22:9-42:20
+50            android:name="com.example.punch_list.MainActivity"
+50-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:23:13-41
+51            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+51-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:27:13-163
+52            android:exported="true"
+52-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:24:13-36
+53            android:hardwareAccelerated="true"
+53-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:28:13-47
+54            android:launchMode="singleTop"
+54-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:25:13-43
+55            android:theme="@style/LaunchTheme"
+55-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:26:13-47
+56            android:windowSoftInputMode="adjustResize" >
+56-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:29:13-55
+57
+58            <!--
+59                 Specifies an Android theme to apply to this Activity as soon as
+60                 the Android process has started. This theme is visible to the user
+61                 while the Flutter UI initializes. After that, this theme continues
+62                 to determine the Window background behind the Flutter UI.
+63            -->
+64            <meta-data
+64-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:34:13-37:17
+65                android:name="io.flutter.embedding.android.NormalTheme"
+65-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:35:15-70
+66                android:resource="@style/NormalTheme" />
+66-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:36:15-52
+67
+68            <intent-filter>
+68-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:38:13-41:29
+69                <action android:name="android.intent.action.MAIN" />
+69-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:39:17-68
+69-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:39:25-66
+70
+71                <category android:name="android.intent.category.LAUNCHER" />
+71-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:40:17-76
+71-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:40:27-74
+72            </intent-filter>
+73        </activity>
+74        <!--
+75             Don't delete the meta-data below.
+76             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+77        -->
+78        <meta-data
+78-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:45:9-47:33
+79            android:name="flutterEmbedding"
+79-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:46:13-44
+80            android:value="2" />
+80-->E:\VINRATECH FLUTTER\flutter_aps\punch_list\android\app\src\main\AndroidManifest.xml:47:13-30
+81
+82        <provider
+82-->[:image_picker_android] E:\VINRATECH FLUTTER\flutter_aps\punch_list\build\image_picker_android\intermediates\merged_manifest\release\AndroidManifest.xml:10:9-18:20
+83            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
+83-->[:image_picker_android] E:\VINRATECH FLUTTER\flutter_aps\punch_list\build\image_picker_android\intermediates\merged_manifest\release\AndroidManifest.xml:11:13-82
+84            android:authorities="com.example.punch_list.flutter.image_provider"
+84-->[:image_picker_android] E:\VINRATECH FLUTTER\flutter_aps\punch_list\build\image_picker_android\intermediates\merged_manifest\release\AndroidManifest.xml:12:13-74
+85            android:exported="false"
+85-->[:image_picker_android] E:\VINRATECH FLUTTER\flutter_aps\punch_list\build\image_picker_android\intermediates\merged_manifest\release\AndroidManifest.xml:13:13-37
+86            android:grantUriPermissions="true" >
+86-->[:image_picker_android] E:\VINRATECH FLUTTER\flutter_aps\punch_list\build\image_picker_android\intermediates\merged_manifest\release\AndroidManifest.xml:14:13-47
+87            <meta-data
+87-->[:image_picker_android] E:\VINRATECH FLUTTER\flutter_aps\punch_list\build\image_picker_android\intermediates\merged_manifest\release\AndroidManifest.xml:15:13-17:75
+88                android:name="android.support.FILE_PROVIDER_PATHS"
+88-->[:image_picker_android] E:\VINRATECH FLUTTER\flutter_aps\punch_list\build\image_picker_android\intermediates\merged_manifest\release\AndroidManifest.xml:16:17-67
+89                android:resource="@xml/flutter_image_picker_file_paths" />
+89-->[:image_picker_android] E:\VINRATECH FLUTTER\flutter_aps\punch_list\build\image_picker_android\intermediates\merged_manifest\release\AndroidManifest.xml:17:17-72
+90        </provider>
+91
+92        <service
+92-->[:location] E:\VINRATECH FLUTTER\flutter_aps\punch_list\build\location\intermediates\merged_manifest\release\AndroidManifest.xml:13:9-17:56
+93            android:name="com.lyokone.location.FlutterLocationService"
+93-->[:location] E:\VINRATECH FLUTTER\flutter_aps\punch_list\build\location\intermediates\merged_manifest\release\AndroidManifest.xml:14:13-71
+94            android:enabled="true"
+94-->[:location] E:\VINRATECH FLUTTER\flutter_aps\punch_list\build\location\intermediates\merged_manifest\release\AndroidManifest.xml:15:13-35
+95            android:exported="false"
+95-->[:location] E:\VINRATECH FLUTTER\flutter_aps\punch_list\build\location\intermediates\merged_manifest\release\AndroidManifest.xml:16:13-37
+96            android:foregroundServiceType="location" /> <!-- Needs to be explicitly declared on P+ -->
+96-->[:location] E:\VINRATECH FLUTTER\flutter_aps\punch_list\build\location\intermediates\merged_manifest\release\AndroidManifest.xml:17:13-53
+97        <uses-library
+97-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\good\.gradle\caches\transforms-3\ec6941a4a6c016637af835cffd5dc1eb\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:39:9-41:40
+98            android:name="org.apache.http.legacy"
+98-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\good\.gradle\caches\transforms-3\ec6941a4a6c016637af835cffd5dc1eb\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:40:13-50
+99            android:required="false" />
+99-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\good\.gradle\caches\transforms-3\ec6941a4a6c016637af835cffd5dc1eb\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:41:13-37
+100
+101        <activity
+101-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\good\.gradle\caches\transforms-3\016775264504b1d809bbf3d67106e939\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
+102            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+102-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\good\.gradle\caches\transforms-3\016775264504b1d809bbf3d67106e939\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:19-85
+103            android:exported="false"
+103-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\good\.gradle\caches\transforms-3\016775264504b1d809bbf3d67106e939\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:22:19-43
+104            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+104-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\good\.gradle\caches\transforms-3\016775264504b1d809bbf3d67106e939\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:21:19-78
+105
+106        <meta-data
+106-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\good\.gradle\caches\transforms-3\46eaecf5a1ae8383f9f8651699c2f377\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:21:9-23:69
+107            android:name="com.google.android.gms.version"
+107-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\good\.gradle\caches\transforms-3\46eaecf5a1ae8383f9f8651699c2f377\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:22:13-58
+108            android:value="@integer/google_play_services_version" />
+108-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\good\.gradle\caches\transforms-3\46eaecf5a1ae8383f9f8651699c2f377\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:23:13-66
+109
+110        <uses-library
+110-->[androidx.window:window:1.0.0-beta04] C:\Users\good\.gradle\caches\transforms-3\3be7551045a2584fed0c8449a906bf45\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
+111            android:name="androidx.window.extensions"
+111-->[androidx.window:window:1.0.0-beta04] C:\Users\good\.gradle\caches\transforms-3\3be7551045a2584fed0c8449a906bf45\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
+112            android:required="false" />
+112-->[androidx.window:window:1.0.0-beta04] C:\Users\good\.gradle\caches\transforms-3\3be7551045a2584fed0c8449a906bf45\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
+113        <uses-library
+113-->[androidx.window:window:1.0.0-beta04] C:\Users\good\.gradle\caches\transforms-3\3be7551045a2584fed0c8449a906bf45\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
+114            android:name="androidx.window.sidecar"
+114-->[androidx.window:window:1.0.0-beta04] C:\Users\good\.gradle\caches\transforms-3\3be7551045a2584fed0c8449a906bf45\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
+115            android:required="false" />
+115-->[androidx.window:window:1.0.0-beta04] C:\Users\good\.gradle\caches\transforms-3\3be7551045a2584fed0c8449a906bf45\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
+116
+117        <provider
+117-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\good\.gradle\caches\transforms-3\7496cfa58456eacf6766e329bb31294e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:24:9-32:20
+118            android:name="androidx.startup.InitializationProvider"
+118-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\good\.gradle\caches\transforms-3\7496cfa58456eacf6766e329bb31294e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:25:13-67
+119            android:authorities="com.example.punch_list.androidx-startup"
+119-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\good\.gradle\caches\transforms-3\7496cfa58456eacf6766e329bb31294e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:26:13-68
+120            android:exported="false" >
+120-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\good\.gradle\caches\transforms-3\7496cfa58456eacf6766e329bb31294e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:27:13-37
+121            <meta-data
+121-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\good\.gradle\caches\transforms-3\7496cfa58456eacf6766e329bb31294e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
+122                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+122-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\good\.gradle\caches\transforms-3\7496cfa58456eacf6766e329bb31294e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
+123                android:value="androidx.startup" />
+123-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\good\.gradle\caches\transforms-3\7496cfa58456eacf6766e329bb31294e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
+124        </provider>
+125
+126        <receiver
+126-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\good\.gradle\caches\transforms-3\7496cfa58456eacf6766e329bb31294e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
+127            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+127-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\good\.gradle\caches\transforms-3\7496cfa58456eacf6766e329bb31294e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
+128            android:directBootAware="false"
+128-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\good\.gradle\caches\transforms-3\7496cfa58456eacf6766e329bb31294e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
+129            android:enabled="true"
+129-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\good\.gradle\caches\transforms-3\7496cfa58456eacf6766e329bb31294e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
+130            android:exported="true"
+130-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\good\.gradle\caches\transforms-3\7496cfa58456eacf6766e329bb31294e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
+131            android:permission="android.permission.DUMP" >
+131-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\good\.gradle\caches\transforms-3\7496cfa58456eacf6766e329bb31294e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
+132            <intent-filter>
+132-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\good\.gradle\caches\transforms-3\7496cfa58456eacf6766e329bb31294e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
+133                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+133-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\good\.gradle\caches\transforms-3\7496cfa58456eacf6766e329bb31294e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
+133-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\good\.gradle\caches\transforms-3\7496cfa58456eacf6766e329bb31294e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
+134            </intent-filter>
+135            <intent-filter>
+135-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\good\.gradle\caches\transforms-3\7496cfa58456eacf6766e329bb31294e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
+136                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+136-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\good\.gradle\caches\transforms-3\7496cfa58456eacf6766e329bb31294e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
+136-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\good\.gradle\caches\transforms-3\7496cfa58456eacf6766e329bb31294e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
+137            </intent-filter>
+138            <intent-filter>
+138-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\good\.gradle\caches\transforms-3\7496cfa58456eacf6766e329bb31294e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
+139                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+139-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\good\.gradle\caches\transforms-3\7496cfa58456eacf6766e329bb31294e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
+139-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\good\.gradle\caches\transforms-3\7496cfa58456eacf6766e329bb31294e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
+140            </intent-filter>
+141            <intent-filter>
+141-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\good\.gradle\caches\transforms-3\7496cfa58456eacf6766e329bb31294e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
+142                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+142-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\good\.gradle\caches\transforms-3\7496cfa58456eacf6766e329bb31294e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
+142-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\good\.gradle\caches\transforms-3\7496cfa58456eacf6766e329bb31294e\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
+143            </intent-filter>
+144        </receiver>
+145    </application>
+146
+147</manifest>

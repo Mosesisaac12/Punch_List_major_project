@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "137210398043",
+    "project_id": "punchlist-app-major-project",
+    "storage_bucket": "punchlist-app-major-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:137210398043:android:17f9136de8b2ce8083c67e",
+        "android_client_info": {
+          "package_name": "com.example.punch_list"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "137210398043-dv4fl45he26kbhliklj1moahuvp4amus.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoyHtm09qFaPrXMxwILzBwNF-9jyOpTjY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "137210398043-dv4fl45he26kbhliklj1moahuvp4amus.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "137210398043-pcv3cfvpd4rpo8tl3nvm25fnjsn9kopn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.punchList"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

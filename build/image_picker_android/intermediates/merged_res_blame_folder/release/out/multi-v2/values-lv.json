@@ -1,0 +1,34 @@
+{
+    "logs": [
+        {
+            "outputFile": "E:\\VINRATECH FLUTTER\\flutter_aps\\punch_list\\build\\image_picker_android\\intermediates\\merged_res\\release\\values-lv\\values-lv.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\good\\.gradle\\caches\\transforms-3\\d224d9d44abe39b7507c36f9f502df42\\transformed\\core-1.9.0\\res\\values-lv\\values-lv.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\VINRATECH FLUTTER\\flutter_aps\\punch_list\\build\\image_picker_android\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-lv\\values-lv.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\good\\.gradle\\caches\\transforms-3\\d224d9d44abe39b7507c36f9f502df42\\transformed\\core-1.9.0\\res\\values-lv\\values-lv.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        }
+    ]
+}
