@@ -22,13 +22,17 @@ class _ImageUpload extends State<ImageUpload> {
       maxWidth: 150,
     );
 
+    print('This is a picked Image${pickedImage}');
+
     if (pickedImage == null) {
-      return;
+      print('picked image null');
     }
 
     setState(() {
-      _takenImageFile = File(pickedImage.path);
+      _takenImageFile = File(pickedImage!.path);
     });
+
+    widget.onTakenImage(_takenImageFile!);
   }
 
   Future<void> _uploadPicture() async {
@@ -46,6 +50,8 @@ class _ImageUpload extends State<ImageUpload> {
     setState(() {
       _takenImageFile = File(pickedImage.path);
     });
+
+    widget.onTakenImage(_takenImageFile!);
   }
 
   @override
@@ -60,10 +66,10 @@ class _ImageUpload extends State<ImageUpload> {
         ),
         TextButton.icon(
             onPressed: _takePicture,
-            icon: Icon(
+            icon: const Icon(
               Icons.camera_alt_rounded,
             ),
-            label: Text(
+            label: const Text(
               'Take Image',
             )),
         TextButton.icon(

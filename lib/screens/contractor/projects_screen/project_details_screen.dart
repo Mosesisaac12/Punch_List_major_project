@@ -34,11 +34,13 @@ class ProjectDetailsScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            Image.file(
-              project.image!,
-              width: double.infinity,
+            Container(
               height: 200,
-              fit: BoxFit.cover,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: NetworkImage(project.imageUrl!),
+                      fit: BoxFit.cover)),
             ),
             const SizedBox(height: 16),
             const Text(
@@ -87,7 +89,9 @@ class ProjectDetailsScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (context) {
-                  return const ShowTasksScreen();
+                  return ShowTasksScreen(
+                    project: project,
+                  );
                 }));
               },
               child: const Text('Show Tasks'),

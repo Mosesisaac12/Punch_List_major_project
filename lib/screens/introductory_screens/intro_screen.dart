@@ -3,9 +3,9 @@ import 'package:punch_list/screens/authorization_screens/create_account.dart';
 import 'package:punch_list/screens/authorization_screens/login_screen.dart';
 
 class IntroScreen extends StatelessWidget {
-  String _loginAs = ' ';
+  String? loginAs = '';
 
-  IntroScreen({super.key});
+  IntroScreen({super.key, this.loginAs});
   @override
   Widget build(BuildContext context) {
     final maxHeight = MediaQuery.of(context).size.height;
@@ -30,10 +30,10 @@ class IntroScreen extends StatelessWidget {
             const SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
-                _loginAs = 'Admin';
+                loginAs = 'Admin';
                 Navigator.of(context).push(MaterialPageRoute(builder: (_) {
                   return LoginScreen(
-                    loginAs: _loginAs,
+                    loginAs: loginAs!,
                   );
                 }));
                 // TODO: Implement admin login logic
@@ -43,10 +43,10 @@ class IntroScreen extends StatelessWidget {
             const SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
-                _loginAs = 'Contractor';
+                loginAs = 'Contractor';
                 Navigator.of(context).push(MaterialPageRoute(builder: (_) {
                   return LoginScreen(
-                    loginAs: _loginAs,
+                    loginAs: loginAs!,
                   );
                 }));
                 // TODO: Implement contractor login logic
@@ -56,10 +56,10 @@ class IntroScreen extends StatelessWidget {
             const SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
-                _loginAs = 'SubContractor';
+                loginAs = 'SubContractor';
                 Navigator.of(context).push(MaterialPageRoute(builder: (_) {
                   return LoginScreen(
-                    loginAs: _loginAs,
+                    loginAs: loginAs!,
                   );
                 }));
                 // TODO: Implement subcontractor login logic

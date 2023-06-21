@@ -1,10 +1,11 @@
-import 'dart:convert';
+import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:http/http.dart';
-import 'package:punch_list/crud/subcontractor_crud.dart';
+
+import 'package:punch_list/widgets/image_upload.dart';
 import '../../../models/subcontractor_form.dart';
-import '../../../providers/sub_contractor/add_subcontractor.dart';
 
 class SubContractorScreen extends ConsumerStatefulWidget {
   SubContractorScreen({super.key});
@@ -21,12 +22,10 @@ class _SubContractorScreenState extends ConsumerState<SubContractorScreen> {
   TextEditingController phone = TextEditingController();
   TextEditingController profileImage = TextEditingController();
 
-  late Future<List<Subcontractor>> _subcontractorsFuture;
-
+  File? selectedImage;
   @override
   void initState() {
     super.initState();
-    fetchSubcontractors();
   }
 
   @override
@@ -37,101 +36,37 @@ class _SubContractorScreenState extends ConsumerState<SubContractorScreen> {
     super.dispose();
   }
 
-  Future<List<Subcontractor>> fetchSubcontractors() async {
-    final response = await get(
-        Uri.parse('http://104.236.1.97:5000/sub_contractor/'),
-        headers: {'Authorization': 'token'});
-
-    if (response.statusCode == 200) {
-      final data = json.decode(response.body);
-      final subcontractors = List.from(data).map((item) {
-        return Subcontractor.fromJson(item);
-      }).toList();
-
-      return subcontractors;
-    } else {
-      throw Exception('Failed to fetch subcontractors');
-    }
-  }
-
   void _saveSubcontractor() async {
     final isValid = subcontractorFormKey.currentState?.validate();
     if (!isValid!) {
       return;
     } else {
       subcontractorFormKey.currentState?.save();
-      final subcontractor = Subcontractor(
+      final subcontractors = Subcontractor(
         name: name.text,
         email: email.text,
         phone: phone.text,
+        image: selectedImage,
       );
 
-      final url = Uri.parse('http://104.236.1.97:5000/sub_contractor/');
-      try {
-        final response = await post(
-          url,
-          headers: {'Content-Type': 'application/json'},
-          body: json.encode(
-            {
-              'fullname': subcontractor.name,
-              'username': subcontractor.email,
-              'mobile_no': subcontractor.phone
-            },
-          ),
-        );
-        final responseData = json.decode(response.body);
-        if (response.statusCode >= 200 && response.statusCode < 300) {
-          Navigator.of(context).pop();
+      final storageRef = FirebaseStorage.instance
+          .ref()
+          .child('subcontractor_images')
+          .child('${subcontractors.name}-${subcontractors.email}');
 
-          ref
-              .read(subcontractorProvider.notifier)
-              .addSubcontractor(subcontractor);
+      await storageRef.putFile(subcontractors.image!);
+      final imageURL = await storageRef.getDownloadURL();
 
-          final responseMessage = responseData['message'];
-
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(responseMessage),
-              backgroundColor: Colors.green,
-            ),
-          );
-        } else {
-          final responseMessage = responseData['message'];
-
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(responseMessage),
-            backgroundColor: Colors.red,
-          ));
-        }
-      } catch (error) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Something went wrong, please check back later'),
-          backgroundColor: Colors.red,
-        ));
-      }
-    }
-  }
-
-  // Future<void> updateSubcontractor(Subcontractor subcontractor) async {
-  //   final response = await put(
-  //     Uri.parse('http://104.236.1.97:5000/sub_contractor/${subcontractor.id}'),
-  //     headers: {'Content-Type': 'application/json'},
-  //     body: json.encode({
-  //       'name': subcontractor.name,
-  //     }),
-  //   );
-
-  //   if (response.statusCode != 200) {
-  //     throw Exception('Failed to update subcontractor');
-  //   }
-  // }
-
-  Future<void> deleteSubcontractor(String id) async {
-    final response =
-        await delete(Uri.parse('http://104.236.1.97:5000/sub_contractor/$id'));
-
-    if (response.statusCode != 204) {
-      throw Exception('Failed to delete subcontractor');
+      await FirebaseFirestore.instance
+          .collection('Subcontractors List')
+          .doc('${subcontractors.name}-${subcontractors.email}')
+          .set({
+        'subcontractor_name': subcontractors.name,
+        'subcontractor_email': subcontractors.email,
+        'subcontractor_phone': subcontractors.phone,
+        'subcontractor_image_url': imageURL
+      });
+      Navigator.of(context).pop();
     }
   }
 
@@ -184,18 +119,10 @@ class _SubContractorScreenState extends ConsumerState<SubContractorScreen> {
                 },
               ),
               const SizedBox(height: 16),
-              TextFormField(
-                controller: profileImage,
-                decoration:
-                    const InputDecoration(labelText: 'Profile Image URL'),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter a profile image URL';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16),
+              ImageUpload(onTakenImage: (takenImage) {
+                selectedImage = takenImage;
+              }),
+              SizedBox(height: 16),
               Center(
                 child: ElevatedButton(
                   onPressed: _saveSubcontractor,
@@ -215,8 +142,10 @@ class _SubContractorScreenState extends ConsumerState<SubContractorScreen> {
       appBar: AppBar(
         title: Text('Subcontractors'),
       ),
-      body: FutureBuilder<List<Subcontractor>>(
-        future: _subcontractorsFuture,
+      body: StreamBuilder(
+        stream: FirebaseFirestore.instance
+            .collection('Subcontractors List')
+            .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
@@ -226,70 +155,59 @@ class _SubContractorScreenState extends ConsumerState<SubContractorScreen> {
             return Center(
               child: Text('Error: ${snapshot.error}'),
             );
-          } else if (snapshot.hasData) {
-            final subcontractors = snapshot.data!;
-            return ListView.builder(
-              itemCount: subcontractors.length,
-              itemBuilder: (context, index) {
-                final subcontractor = subcontractors[index];
-                return ListTile(
-                  title: Text(subcontractor.name!),
-                  trailing: IconButton(
-                    icon: Icon(Icons.delete),
-                    onPressed: () {
-                      _deleteSubcontractor(subcontractor);
-                    },
-                  ),
-                );
-              },
-            );
-          } else {
-            return Center(
-              child: Text('No subcontractors found.'),
-            );
+          } else if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+            return Center(child: Text('No Subcontractors added yet'));
           }
+
+          final loadedSubcontractorsList = snapshot.data!.docs;
+          return ListView.builder(
+            itemCount: loadedSubcontractorsList.length,
+            itemBuilder: (context, index) {
+              Subcontractor subcontractor = Subcontractor(
+                  name: loadedSubcontractorsList[index]
+                      .data()['subcontractor_name'],
+                  email: loadedSubcontractorsList[index]
+                      .data()['subcontractor_email'],
+                  phone: loadedSubcontractorsList[index]
+                      .data()['subcontractor_phone'],
+                  imageURL: loadedSubcontractorsList[index]
+                      .data()['subcontractor_image_url']);
+
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Card(
+                  elevation: 5,
+                  child: ListTile(
+                    leading: Container(
+                      height: 50,
+                      width: 50,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: NetworkImage(subcontractor.imageURL!),
+                        ),
+                      ),
+                    ),
+                    title: Text(subcontractor.name!),
+                    subtitle: Column(
+                      children: [
+                        Text(subcontractor.email!),
+                        Text(subcontractor.phone!)
+                      ],
+                    ),
+                    trailing: IconButton(
+                      icon: Icon(Icons.delete),
+                      onPressed: () {},
+                    ),
+                  ),
+                ),
+              );
+            },
+          );
         },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _showAddSubcontractorModal,
         child: Icon(Icons.add),
-      ),
-    );
-  }
-
-  // void _navigateToCreateSubcontractor() async {
-  //   final newSubcontractor = await Navigator.push(
-  //     context,
-  //     MaterialPageRoute(builder: (context) => CreateSubcontractorScreen()),
-  //   );
-
-  //   if (newSubcontractor != null) {
-  //     setState(() {
-  //       _subcontractorsFuture = _subcontractorService.fetchSubcontractors();
-  //     });
-  //   }
-  // }
-
-  void _deleteSubcontractor(Subcontractor subcontractor) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text('Delete Subcontractor'),
-        content: Text('Are you sure you want to delete ${subcontractor.name}?'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: Text('Cancel'),
-          ),
-          TextButton(
-            onPressed: () {
-              deleteSubcontractor;
-            },
-            child: Text('Delete'),
-          ),
-        ],
       ),
     );
   }

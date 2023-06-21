@@ -44,7 +44,7 @@ class PunchList extends StatelessWidget {
                 return SplashScreen();
               }
               if (snapshot.hasData) {
-                return CreateNewProjectScreen();
+                return ProjectListScreen();
               }
               return IntroScreen();
             }));

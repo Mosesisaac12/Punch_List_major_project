@@ -2,11 +2,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../models/task_model.dart';
 
-class CreateTaskNotifier extends StateNotifier<List<Task>> {
+class CreateTaskNotifier extends StateNotifier<List<Tasks>> {
   CreateTaskNotifier() : super([]);
 
-  void addtask(Task task) {
-    final newTask = Task(
+  void addtask(Tasks task) {
+    final newTask = Tasks(
       name: task.name,
       subcontractor: task.subcontractor,
       description: task.description,
@@ -17,6 +17,6 @@ class CreateTaskNotifier extends StateNotifier<List<Task>> {
 }
 
 final taskProvider =
-    StateNotifierProvider<CreateTaskNotifier, List<Task>>((ref) {
+    StateNotifierProvider<CreateTaskNotifier, List<Tasks>>((ref) {
   return CreateTaskNotifier();
 });

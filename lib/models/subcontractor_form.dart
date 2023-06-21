@@ -1,16 +1,16 @@
+import 'dart:io';
+
 class Subcontractor {
   final String? name;
   final String? email;
   final String? phone;
+  final File? image;
+  final String? imageURL;
 
-  Subcontractor({
-    this.name,
-    this.email,
-    this.phone,
-  });
-
-  factory Subcontractor.fromJson(Map<String, dynamic> json) {
-    return Subcontractor(
-        name: json['name'], email: json['username'], phone: json['mobile_no']);
-  }
+  Subcontractor(
+      {required this.name,
+      required this.email,
+      this.phone,
+      this.image,
+      this.imageURL});
 }

@@ -1,31 +1,41 @@
 import 'dart:io';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:punch_list/models/project_model.dart';
 import 'package:punch_list/models/subcontractor_form.dart';
-import 'package:punch_list/providers/sub_contractor/add_subcontractor.dart';
-import '../../../models/task_model.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:punch_list/providers/tasks/create_task.dart';
 
-class ShowTasksScreen extends ConsumerStatefulWidget {
-  const ShowTasksScreen({super.key});
+import 'package:image_picker/image_picker.dart';
+
+import 'package:punch_list/models/task_model.dart';
+import 'package:punch_list/widgets/image_upload.dart';
+
+class ShowTasksScreen extends StatefulWidget {
+  final Project project;
+  ShowTasksScreen({super.key, required this.project});
 
   @override
   _ShowTasksScreenState createState() => _ShowTasksScreenState();
 }
 
-class _ShowTasksScreenState extends ConsumerState<ShowTasksScreen> {
+class _ShowTasksScreenState extends State<ShowTasksScreen> {
   final _taskFormKey = GlobalKey<FormState>();
   final taskNameController = TextEditingController();
   final taskDescController = TextEditingController();
-  File? _takenImage;
+  File? _selectedImage;
 
   Subcontractor selectedSubcontractor = Subcontractor(
     name: 'Moses',
     email: 'moses@gmail.com',
     phone: '7355250546',
   );
+
+  @override
+  void dispose() {
+    taskNameController.dispose();
+    taskDescController.dispose();
+    super.dispose();
+  }
 
   void _showTaskDescription(BuildContext context, String description) {
     showDialog(
@@ -47,40 +57,39 @@ class _ShowTasksScreenState extends ConsumerState<ShowTasksScreen> {
     );
   }
 
-  Future<void> _takePicture() async {
-    final imagePicker = ImagePicker();
-    final pickedImage = await imagePicker.pickImage(
-      source: ImageSource.camera,
-      maxWidth: 600,
-    );
+  // Future<void> _takePicture() async {
+  //   final imagePicker = ImagePicker();
+  //   final pickedImage = await imagePicker.pickImage(
+  //     source: ImageSource.camera,
+  //     maxWidth: 600,
+  //   );
 
-    if (pickedImage == null) {
-      return;
-    }
+  //   if (pickedImage == null) {
+  //     return;
+  //   }
 
-    setState(() {
-      _takenImage = File(pickedImage.path);
-    });
-  }
+  //   setState(() {
+  //     _takenImage = File(pickedImage.path);
+  //   });
+  // }
 
-  Future<void> _uploadPicture() async {
-    final imagePicker = ImagePicker();
-    final pickedImage = await imagePicker.pickImage(
-      source: ImageSource.gallery,
-      maxWidth: 600,
-    );
+  // Future<void> _uploadPicture() async {
+  //   final imagePicker = ImagePicker();
+  //   final pickedImage = await imagePicker.pickImage(
+  //     source: ImageSource.gallery,
+  //     maxWidth: 600,
+  //   );
 
-    if (pickedImage == null) {
-      return;
-    }
+  //   if (pickedImage == null) {
+  //     return;
+  //   }
 
-    setState(() {
-      _takenImage = File(pickedImage.path);
-    });
-  }
+  //   setState(() {
+  //     _takenImage = File(pickedImage.path);
+  //   });
+  // }
 
   void _showTaskForm() {
-    final subcontractor = ref.watch(subcontractorProvider);
     showModalBottomSheet(
         context: context,
         builder: (BuildContext context) {
@@ -118,55 +127,80 @@ class _ShowTasksScreenState extends ConsumerState<ShowTasksScreen> {
                   // ),
                   Column(
                     children: [
-                      TextButton.icon(
-                        icon: const Icon(Icons.camera),
-                        label: const Text('Take Picture'),
-                        onPressed: _takePicture,
-                      ),
-                      TextButton.icon(
-                        icon: const Icon(Icons.photo),
-                        label: const Text('Upload Picture'),
-                        onPressed: _uploadPicture,
-                      ),
+                      // TextButton.icon(
+                      //   icon: const Icon(Icons.camera),
+                      //   label: const Text('Take Picture'),
+                      //   onPressed: _takePicture,
+                      // ),
+                      // TextButton.icon(
+                      //   icon: const Icon(Icons.photo),
+                      //   label: const Text('Upload Picture'),
+                      //   onPressed: _uploadPicture,
+                      // ),
+                      ImageUpload(onTakenImage: (takenImage) {
+                        _selectedImage = takenImage;
+                      })
                     ],
                   ),
                   SizedBox(height: 16.0),
-                  DropdownButtonFormField<Subcontractor>(
-                    value: selectedSubcontractor,
-                    onChanged: (Subcontractor? newValue) {
-                      setState(() {
-                        selectedSubcontractor = newValue!;
-                      });
-                    },
-                    items: subcontractor.map<DropdownMenuItem<Subcontractor>>(
-                        (Subcontractor subcontractor) {
-                      return DropdownMenuItem(
-                        value: subcontractor,
-                        child: Text(subcontractor.name!),
-                      );
-                    }).toList(),
-                    decoration: InputDecoration(
-                      labelText: 'Select Subcontractor',
-                    ),
-                  ),
+                  // DropdownButtonFormField<Subcontractor>(
+                  //   value: selectedSubcontractor,
+                  //   onChanged: (Subcontractor? newValue) {
+                  //     setState(() {
+                  //       selectedSubcontractor = newValue!;
+                  //     });
+                  //   },
+                  //   items: subcontractor.map<DropdownMenuItem<Subcontractor>>(
+                  //       (Subcontractor subcontractor) {
+                  //     return DropdownMenuItem(
+                  //       value: subcontractor,
+                  //       child: Text(subcontractor.name!),
+                  //     );
+                  //   }).toList(),
+                  //   decoration: InputDecoration(
+                  //     labelText: 'Select Subcontractor',
+                  //   ),
+                  // ),
                   ElevatedButton(onPressed: _savetask, child: Text('Submit'))
                 ]),
               ));
         });
   }
 
-  void _savetask() {
+  void _savetask() async {
     final isValid = _taskFormKey.currentState?.validate();
     if (!isValid!) {
       return;
     }
     _taskFormKey.currentState?.save();
-    final task = Task(
+    final task = Tasks(
         name: taskNameController.text,
         subcontractor: selectedSubcontractor.name!,
         description: taskDescController.text,
-        image: _takenImage);
-    ref.read(taskProvider.notifier).addtask(task);
+        image: _selectedImage);
+
+    await FirebaseFirestore.instance
+        .collection('projects')
+        .doc(widget.project.name)
+        .get();
+    final storageRef = FirebaseStorage.instance
+        .ref()
+        .child('task_image')
+        .child('${widget.project.name!}-${task.name}.jpg');
+
+    await storageRef.putFile(task.image!);
+    final imageURL = await storageRef.getDownloadURL();
+
+    await FirebaseFirestore.instance
+        .collection('tasks')
+        .doc('${widget.project.name}-${task.name}')
+        .set({
+      'task_name': task.name,
+      'task_subcontractor': task.subcontractor,
+      'task_description': task.description,
+      'image_url': imageURL
+    });
+    // ref.read(taskProvider.notifier).addtask(task);
     Navigator.of(context).pop();
   }
 
@@ -174,90 +208,95 @@ class _ShowTasksScreenState extends ConsumerState<ShowTasksScreen> {
   Widget build(
     BuildContext context,
   ) {
-    final tasks = ref.watch(taskProvider);
-
     // final height = MediaQuery.of(context).size.height;
     // final width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Punch List'),
       ),
-      body: Column(
-        children: [
-          Container(
-            height: 600,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              border: Border.all(),
-            ),
-            child: ListView.builder(
-              itemCount: tasks.length,
+      body: StreamBuilder(
+          stream: FirebaseFirestore.instance.collection('tasks').snapshots(),
+          builder: (context, tasksnapShots) {
+            if (tasksnapShots.connectionState == ConnectionState.waiting) {
+              return Center(child: CircularProgressIndicator());
+            }
+
+            if (!tasksnapShots.hasData || tasksnapShots.data!.docs.isEmpty) {
+              return Center(child: Text('No tasks added yet'));
+            }
+
+            if (tasksnapShots.hasError) {
+              Center(child: Text('Something went wrong'));
+            }
+
+            final loadedTasks = tasksnapShots.data!.docs;
+            return ListView.builder(
+              itemCount: loadedTasks.length,
               itemBuilder: (context, index) {
-                final task = tasks[index];
-                final hasSubcontractor = task.subcontractor.isNotEmpty;
+                Tasks projectTask = Tasks(
+                    name: loadedTasks[index].data()['task_name'],
+                    description: loadedTasks[index].data()['task_description'],
+                    ImageURL: loadedTasks[index].data()['image_url']);
+                // final task = loadedTasks[index];
+                // final hasSubcontractor = task.subcontractor.isNotEmpty;
 
                 return Container(
                   margin: const EdgeInsets.all(10),
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(border: Border.all()),
                   child: ListTile(
-                    leading: SizedBox(
-                        height: 100,
-                        width: 100,
-                        child: Image.file(task.image!)),
-                    title: Text(task.name),
+                    leading: Container(
+                      height: 100,
+                      width: 100,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: NetworkImage(projectTask.ImageURL!),
+                        ),
+                      ),
+                    ),
+                    title: Text(projectTask.name),
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(task.description),
+                        Text(projectTask.description),
                         const SizedBox(height: 8.0),
                         // Text(
                         //   // 'Assigned: ${task.timeAssigned.toString()}',
                         //  , style: TextStyle(color: Colors.grey),
                         // ),
                         const SizedBox(height: 8.0),
-                        if (hasSubcontractor)
-                          Text('Subcontractor: ${task.subcontractor}')
-                        else
-                          const Column(
-                            children: <Widget>[
-                              Icon(
-                                Icons.error,
+                        // if (hasSubcontractor)
+                        //   Text('Subcontractor: ${task.subcontractor}')
+                        // else
+                        const Column(
+                          children: <Widget>[
+                            Icon(
+                              Icons.error,
+                              color: Colors.red,
+                              size: 16.0,
+                            ),
+                            SizedBox(width: 4.0),
+                            Text(
+                              'No subcontractor assigned',
+                              style: TextStyle(
                                 color: Colors.red,
-                                size: 16.0,
+                                fontWeight: FontWeight.bold,
                               ),
-                              SizedBox(width: 4.0),
-                              Text(
-                                'No subcontractor assigned',
-                                style: TextStyle(
-                                  color: Colors.red,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                     onTap: () {
-                      _showTaskDescription(context, task.description);
+                      _showTaskDescription(context, projectTask.description);
                     },
                   ),
                 );
               },
-            ),
-          ),
-          Container(
-              height: 50,
-              width: 200,
-              decoration: const BoxDecoration(),
-              child: ElevatedButton(
-                onPressed: _showTaskForm,
-                style: ElevatedButton.styleFrom(),
-                child: const Text('Add Task'),
-              ))
-        ],
-      ),
+            );
+          }),
+      floatingActionButton: FloatingActionButton(
+          onPressed: _showTaskForm, child: Icon(Icons.add_sharp)),
     );
-    // ElevatedButton(onPressed: () {}, child: Text('Add Task'))),
   }
 }

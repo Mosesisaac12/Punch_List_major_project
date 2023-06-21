@@ -14,6 +14,7 @@ class Project {
   final String? lotBlockSection;
   final String? zipCode;
   final File? image;
+  final String? imageUrl;
   final ProjectLocation? location;
 
   Project({
@@ -21,7 +22,8 @@ class Project {
     required this.address,
     required this.lotBlockSection,
     required this.zipCode,
-    required this.image,
+    this.image,
+    this.imageUrl,
     this.location,
   });
   factory Project.fromJson(Map<String, dynamic> json) {
