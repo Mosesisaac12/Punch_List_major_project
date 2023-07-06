@@ -16,37 +16,6 @@ class _CreateNewPasswordState extends State<CreateNewPassword> {
 
   String _responseMessage = '';
 
-  // Future<void> _sendNewPasswordScreen() async {
-  //   try {
-  //     await Provider.of<CreateNewPasswordDataProvider>(context, listen: false)
-  //         .sendNewPasswordProvider(
-  //             widget._username,
-  //             _NewPasswordData['password']!,
-  //             _NewPasswordData['confirmNewPassword']!)
-  //         .then((response) {
-  //       if (response.statusCode >= 200 && response.statusCode < 300) {
-  //         setState(() {
-  //           _responseMessage = 'OTP verification successful';
-  //         });
-  //         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-  //           content: Text(_responseMessage),
-  //           backgroundColor: Colors.green,
-  //         ));
-  //       } else {
-  //         setState(() {
-  //           _responseMessage = 'Unsuccessful verfication,Please check OTP';
-  //         });
-  //         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-  //           content: Text(_responseMessage),
-  //           backgroundColor: Colors.red,
-  //         ));
-  //       }
-  //     });
-  //   } catch (error) {
-  //     print(error);
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

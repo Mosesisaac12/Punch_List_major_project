@@ -4,24 +4,24 @@
             "outputFile": "E:\\VINRATECH FLUTTER\\flutter_aps\\punch_list\\build\\google_maps_flutter_android\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-zh-rTW\\values-zh-rTW.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\good\\.gradle\\caches\\transforms-3\\46eaecf5a1ae8383f9f8651699c2f377\\transformed\\jetified-play-services-basement-18.0.0\\res\\values-zh-rTW\\values.xml",
+                    "source": "C:\\Users\\good\\.gradle\\caches\\transforms-3\\3504d2344835c33057434b1f02d3e294\\transformed\\core-1.6.0\\res\\values-zh-rTW\\values-zh-rTW.xml",
                     "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "199",
-                        "endColumns": "98",
-                        "endOffsets": "297"
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
                     },
                     "to": {
-                        "startLines": "10",
+                        "startLines": "20",
                         "startColumns": "4",
-                        "startOffsets": "919",
-                        "endColumns": "102",
-                        "endOffsets": "1017"
+                        "startOffsets": "1874",
+                        "endColumns": "100",
+                        "endOffsets": "1970"
                     }
                 },
                 {
-                    "source": "C:\\Users\\good\\.gradle\\caches\\transforms-3\\016775264504b1d809bbf3d67106e939\\transformed\\jetified-play-services-base-18.0.1\\res\\values-zh-rTW\\values.xml",
+                    "source": "C:\\Users\\good\\.gradle\\caches\\transforms-3\\19a60500d790e43d8b626a8724e5ef2b\\transformed\\jetified-play-services-base-18.0.1\\res\\values-zh-rTW\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -38,20 +38,20 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\good\\.gradle\\caches\\transforms-3\\6ea6d753885c891982516fb6f0adaffd\\transformed\\core-1.6.0\\res\\values-zh-rTW\\values-zh-rTW.xml",
+                    "source": "C:\\Users\\good\\.gradle\\caches\\transforms-3\\9024007a617cf5990e83b886a8110c78\\transformed\\jetified-play-services-basement-18.0.0\\res\\values-zh-rTW\\values.xml",
                     "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "199",
+                        "endColumns": "98",
+                        "endOffsets": "297"
                     },
                     "to": {
-                        "startLines": "20",
+                        "startLines": "10",
                         "startColumns": "4",
-                        "startOffsets": "1874",
-                        "endColumns": "100",
-                        "endOffsets": "1970"
+                        "startOffsets": "919",
+                        "endColumns": "102",
+                        "endOffsets": "1017"
                     }
                 }
             ]
@@ -60,24 +60,24 @@
             "outputFile": "E:\\VINRATECH FLUTTER\\flutter_aps\\punch_list\\build\\google_maps_flutter_android\\intermediates\\merged_res\\release\\values-zh-rTW\\values-zh-rTW.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\good\\.gradle\\caches\\transforms-3\\46eaecf5a1ae8383f9f8651699c2f377\\transformed\\jetified-play-services-basement-18.0.0\\res\\values-zh-rTW\\values.xml",
+                    "source": "C:\\Users\\good\\.gradle\\caches\\transforms-3\\3504d2344835c33057434b1f02d3e294\\transformed\\core-1.6.0\\res\\values-zh-rTW\\values-zh-rTW.xml",
                     "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "199",
-                        "endColumns": "98",
-                        "endOffsets": "297"
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
                     },
                     "to": {
-                        "startLines": "10",
+                        "startLines": "20",
                         "startColumns": "4",
-                        "startOffsets": "919",
-                        "endColumns": "102",
-                        "endOffsets": "1017"
+                        "startOffsets": "1874",
+                        "endColumns": "100",
+                        "endOffsets": "1970"
                     }
                 },
                 {
-                    "source": "C:\\Users\\good\\.gradle\\caches\\transforms-3\\016775264504b1d809bbf3d67106e939\\transformed\\jetified-play-services-base-18.0.1\\res\\values-zh-rTW\\values.xml",
+                    "source": "C:\\Users\\good\\.gradle\\caches\\transforms-3\\19a60500d790e43d8b626a8724e5ef2b\\transformed\\jetified-play-services-base-18.0.1\\res\\values-zh-rTW\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -94,20 +94,20 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\good\\.gradle\\caches\\transforms-3\\6ea6d753885c891982516fb6f0adaffd\\transformed\\core-1.6.0\\res\\values-zh-rTW\\values-zh-rTW.xml",
+                    "source": "C:\\Users\\good\\.gradle\\caches\\transforms-3\\9024007a617cf5990e83b886a8110c78\\transformed\\jetified-play-services-basement-18.0.0\\res\\values-zh-rTW\\values.xml",
                     "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "199",
+                        "endColumns": "98",
+                        "endOffsets": "297"
                     },
                     "to": {
-                        "startLines": "20",
+                        "startLines": "10",
                         "startColumns": "4",
-                        "startOffsets": "1874",
-                        "endColumns": "100",
-                        "endOffsets": "1970"
+                        "startOffsets": "919",
+                        "endColumns": "102",
+                        "endOffsets": "1017"
                     }
                 }
             ]

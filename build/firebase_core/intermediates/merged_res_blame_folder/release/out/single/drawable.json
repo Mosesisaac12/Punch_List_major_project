@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "E:\\VINRATECH FLUTTER\\flutter_aps\\punch_list\\build\\firebase_core\\intermediates\\merged_res\\release\\drawable\\notification_icon_background.xml",
+        "source": "C:\\Users\\good\\.gradle\\caches\\transforms-3\\3504d2344835c33057434b1f02d3e294\\transformed\\core-1.6.0\\res\\drawable\\notification_icon_background.xml"
+    },
+    {
+        "merged": "E:\\VINRATECH FLUTTER\\flutter_aps\\punch_list\\build\\firebase_core\\intermediates\\merged_res\\release\\drawable\\notification_bg.xml",
+        "source": "C:\\Users\\good\\.gradle\\caches\\transforms-3\\3504d2344835c33057434b1f02d3e294\\transformed\\core-1.6.0\\res\\drawable\\notification_bg.xml"
+    },
+    {
+        "merged": "E:\\VINRATECH FLUTTER\\flutter_aps\\punch_list\\build\\firebase_core\\intermediates\\merged_res\\release\\drawable\\notification_bg_low.xml",
+        "source": "C:\\Users\\good\\.gradle\\caches\\transforms-3\\3504d2344835c33057434b1f02d3e294\\transformed\\core-1.6.0\\res\\drawable\\notification_bg_low.xml"
+    },
+    {
+        "merged": "E:\\VINRATECH FLUTTER\\flutter_aps\\punch_list\\build\\firebase_core\\intermediates\\merged_res\\release\\drawable\\notification_tile_bg.xml",
+        "source": "C:\\Users\\good\\.gradle\\caches\\transforms-3\\3504d2344835c33057434b1f02d3e294\\transformed\\core-1.6.0\\res\\drawable\\notification_tile_bg.xml"
+    }
+]

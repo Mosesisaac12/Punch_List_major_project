@@ -99,23 +99,6 @@ class CreateNewProjectScreenState
     'longitude': ''
   };
 
-  // final String apiUrl = 'http://104.236.1.97:5000/project/';
-  // Future<List<Project>> fetchProjects() async {
-  //   final response =
-  //       await get(Uri.parse(apiUrl), headers: {'Authorization': widget.token});
-
-  //   if (response.statusCode == 200) {
-  //     final data = json.decode(response.body);
-  //     final projects = List.from(data).map((item) {
-  //       return Project.fromJson(item);
-  //     }).toList();
-
-  //     return projects;
-  //   } else {
-  //     throw Exception('Failed to fetch subcontractors');
-  //   }
-  // }
-
   void _saveProject() async {
     try {
       final isValid = _projectFormKey.currentState?.validate();

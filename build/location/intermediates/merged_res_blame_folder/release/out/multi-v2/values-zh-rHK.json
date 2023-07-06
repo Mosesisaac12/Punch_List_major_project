@@ -4,24 +4,24 @@
             "outputFile": "E:\\VINRATECH FLUTTER\\flutter_aps\\punch_list\\build\\location\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-zh-rHK\\values-zh-rHK.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\good\\.gradle\\caches\\transforms-3\\6ea6d753885c891982516fb6f0adaffd\\transformed\\core-1.6.0\\res\\values-zh-rHK\\values-zh-rHK.xml",
+                    "source": "C:\\Users\\good\\.gradle\\caches\\transforms-3\\805d905299070f810563e83549772f00\\transformed\\jetified-play-services-basement-16.0.1\\res\\values-zh-rHK\\values.xml",
                     "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "251",
+                        "endColumns": "166",
+                        "endOffsets": "417"
                     },
                     "to": {
-                        "startLines": "20",
+                        "startLines": "10",
                         "startColumns": "4",
-                        "startOffsets": "2420",
-                        "endColumns": "100",
-                        "endOffsets": "2516"
+                        "startOffsets": "1127",
+                        "endColumns": "166",
+                        "endOffsets": "1289"
                     }
                 },
                 {
-                    "source": "C:\\Users\\good\\.gradle\\caches\\transforms-3\\9bb6a8f4f0f3ef1da1fd676296c2d562\\transformed\\jetified-play-services-base-16.0.1\\res\\values-zh-rHK\\values.xml",
+                    "source": "C:\\Users\\good\\.gradle\\caches\\transforms-3\\d86ae40b942c9dafe204cfd8a93e950c\\transformed\\jetified-play-services-base-16.0.1\\res\\values-zh-rHK\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -38,20 +38,20 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\good\\.gradle\\caches\\transforms-3\\0f651d08fa7ca3280024108949aac944\\transformed\\jetified-play-services-basement-16.0.1\\res\\values-zh-rHK\\values.xml",
+                    "source": "C:\\Users\\good\\.gradle\\caches\\transforms-3\\3504d2344835c33057434b1f02d3e294\\transformed\\core-1.6.0\\res\\values-zh-rHK\\values-zh-rHK.xml",
                     "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "251",
-                        "endColumns": "166",
-                        "endOffsets": "417"
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
                     },
                     "to": {
-                        "startLines": "10",
+                        "startLines": "20",
                         "startColumns": "4",
-                        "startOffsets": "1127",
-                        "endColumns": "166",
-                        "endOffsets": "1289"
+                        "startOffsets": "2420",
+                        "endColumns": "100",
+                        "endOffsets": "2516"
                     }
                 }
             ]
@@ -60,24 +60,24 @@
             "outputFile": "E:\\VINRATECH FLUTTER\\flutter_aps\\punch_list\\build\\location\\intermediates\\merged_res\\release\\values-zh-rHK\\values-zh-rHK.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\good\\.gradle\\caches\\transforms-3\\6ea6d753885c891982516fb6f0adaffd\\transformed\\core-1.6.0\\res\\values-zh-rHK\\values-zh-rHK.xml",
+                    "source": "C:\\Users\\good\\.gradle\\caches\\transforms-3\\805d905299070f810563e83549772f00\\transformed\\jetified-play-services-basement-16.0.1\\res\\values-zh-rHK\\values.xml",
                     "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "251",
+                        "endColumns": "166",
+                        "endOffsets": "417"
                     },
                     "to": {
-                        "startLines": "20",
+                        "startLines": "10",
                         "startColumns": "4",
-                        "startOffsets": "2420",
-                        "endColumns": "100",
-                        "endOffsets": "2516"
+                        "startOffsets": "1127",
+                        "endColumns": "166",
+                        "endOffsets": "1289"
                     }
                 },
                 {
-                    "source": "C:\\Users\\good\\.gradle\\caches\\transforms-3\\9bb6a8f4f0f3ef1da1fd676296c2d562\\transformed\\jetified-play-services-base-16.0.1\\res\\values-zh-rHK\\values.xml",
+                    "source": "C:\\Users\\good\\.gradle\\caches\\transforms-3\\d86ae40b942c9dafe204cfd8a93e950c\\transformed\\jetified-play-services-base-16.0.1\\res\\values-zh-rHK\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -94,20 +94,20 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\good\\.gradle\\caches\\transforms-3\\0f651d08fa7ca3280024108949aac944\\transformed\\jetified-play-services-basement-16.0.1\\res\\values-zh-rHK\\values.xml",
+                    "source": "C:\\Users\\good\\.gradle\\caches\\transforms-3\\3504d2344835c33057434b1f02d3e294\\transformed\\core-1.6.0\\res\\values-zh-rHK\\values-zh-rHK.xml",
                     "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "251",
-                        "endColumns": "166",
-                        "endOffsets": "417"
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
                     },
                     "to": {
-                        "startLines": "10",
+                        "startLines": "20",
                         "startColumns": "4",
-                        "startOffsets": "1127",
-                        "endColumns": "166",
-                        "endOffsets": "1289"
+                        "startOffsets": "2420",
+                        "endColumns": "100",
+                        "endOffsets": "2516"
                     }
                 }
             ]

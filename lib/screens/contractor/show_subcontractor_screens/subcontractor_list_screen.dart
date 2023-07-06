@@ -59,7 +59,7 @@ class _SubContractorScreenState extends ConsumerState<SubContractorScreen> {
 
       await FirebaseFirestore.instance
           .collection('Subcontractors List')
-          .doc('${subcontractors.name}-${subcontractors.email}')
+          .doc('${subcontractors.email}')
           .set({
         'subcontractor_name': subcontractors.name,
         'subcontractor_email': subcontractors.email,

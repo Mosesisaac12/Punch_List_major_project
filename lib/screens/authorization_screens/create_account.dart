@@ -50,45 +50,21 @@ class _CreateAccountState extends State<CreateAccount> {
       'value': 'Contractor',
       'label': 'Contractor',
       'icon': const Icon(Icons.home_repair_service),
-      'textStyle': const TextStyle(color: Colors.red),
-    },
-    {
-      'value': 'starValue',
-      'label': 'Admin',
-      'icon': const Icon(Icons.man_2_sharp),
+      // 'textStyle': const TextStyle(color: Colors.red),
     },
   ];
   final _passwordController = TextEditingController();
 
-  var _isLoading = false;
+  final _isLoading = false;
 
   final _fullNameFocusNode = FocusNode();
   final _phoneNumberFocusNode = FocusNode();
   final _confirmPasswordFocusNode = FocusNode();
 
-  // Future<dynamic> _onFailure() {
-  //   return showDialog(
-  //       // useSafeArea: true,
-  //       context: context,
-  //       builder: (ctx) {
-  //         return AlertDialog(
-  //           title: Text('An Error occurred'),
-  //           content: Text('Server Error'),
-  //           actions: [
-  //             TextButton(
-  //               onPressed: () {
-  //                 Navigator.of(context).pop();
-  //               },
-  //               child: Text('Okay'),
-  //             )
-  //           ],
-  //         );
-  //       });
-  // }
   String username = '';
 
   void _onSuccess() {
-    Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) {
       return EmailOtp(username, _signupData['group']);
     }));
   }
@@ -123,86 +99,44 @@ class _CreateAccountState extends State<CreateAccount> {
       final imageUrl = await storageRef.getDownloadURL();
       print(imageUrl);
 
-      await FirebaseFirestore.instance
-          .collection('users')
-          .doc(_userCredentials.user!.uid)
-          .set({
-        'name': _signupData['fullName'],
-        'profile': _signupData['group'],
-        'mobile_no': _signupData['mobileNo'],
-        'image_url': imageUrl
-      });
+      if (_signupData['group'] == 'Contractor') {
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc('Category of Users')
+            .collection('Contractor')
+            .doc(_userCredentials.user!.uid)
+            .set({
+          'name': _signupData['fullName'],
+          'profile': _signupData['group'],
+          'mobile_no': _signupData['mobileNo'],
+          'imageUrl': imageUrl
+        });
+      } else if (_signupData['group'] == 'Subcontractor') {
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc('Category of Users')
+            .collection('Subcontractor')
+            .doc(_userCredentials.user!.uid)
+            .set({
+          'name': _signupData['fullName'],
+          'profile': _signupData['group'],
+          'mobileNo': _signupData['mobileNo'],
+          'imageUrl': imageUrl
+        });
+      }
 
-      print(_userCredentials);
       Navigator.of(context).push(MaterialPageRoute(builder: (context) {
         return IntroScreen();
       }));
     } on FirebaseAuthException catch (error) {
-      if (error.code == 'email-already-in-use') {
-        ScaffoldMessenger.of(context).clearSnackBars();
-        ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(error.message ?? 'Authentication failed')));
-      }
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(error.message ?? 'Authentication failed')));
+
       setState(() {
         isAuthenticating = false;
       });
     }
-
-    // setState(() {
-    //   _isLoading = true;
-    // });
-
-    // final url = Uri.parse('http://104.236.1.97:5000/register/');
-    // try {
-    //   final response = await post(
-    //     url,
-    //     headers: {'Content-Type': 'application/json'},
-    //     body: json.encode(
-    //       {
-    //         'username': _signupData['username'],
-    //         'fullname': _signupData['fullName'],
-    //         'country_code': _signupData['countryCode'],
-    //         'mobile_no': _signupData['mobileNo'],
-    //         'password': _signupData['password'],
-    //         'confirm_password': _signupData['confirmPassword'],
-    //         'group': _signupData['group'],
-    //       },
-    //     ),
-    //   );
-    //   final responseData = json.decode(response.body);
-    //   if (response.statusCode >= 200 && response.statusCode < 300) {
-    //     final responseMessage = responseData['message'];
-
-    //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-    //       content: Text(responseMessage),
-    //       backgroundColor: Colors.green,
-    //     ));
-    //     Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-    //       return EmailOtp(_signupData['username'], _signupData['group']);
-    //     }));
-    //   } else {
-    //     print(responseData);
-    //     setState(() {
-    //       _isLoading = false;
-    //     });
-
-    //     final responseMessage = responseData['message'];
-
-    //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-    //       content: Text(responseMessage),
-    //       backgroundColor: Colors.red,
-    //     ));
-    //   }
-    // } catch (error) {
-    //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-    //     content: Text('Something went wrong, please check back later'),
-    //     backgroundColor: Colors.red,
-    //   ));
-    // } // final responseData = json.decode(response);
-
-    // setState(() {
-    //   _isLoading = false;
-    // });
   }
 
   @override

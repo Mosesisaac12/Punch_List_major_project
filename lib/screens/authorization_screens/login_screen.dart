@@ -1,8 +1,9 @@
-import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:punch_list/screens/authorization_screens/create_account.dart';
+import '../../main.dart';
 import '../contractor/projects_screen/projects_lists_screen.dart';
 import 'forgot_password.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -23,6 +24,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
   var _isLoading = false;
   String responseToken = '';
+  dynamic userData;
+
+  Future<void> restartApp() async {
+    await SystemChannels.platform.invokeMethod<void>('SystemNavigator.pop');
+    runApp(const ProviderScope(child: PunchList()));
+  }
 
   @override
   void dispose() {
@@ -46,29 +53,56 @@ class _LoginScreenState extends State<LoginScreen> {
         setState(() {
           _isLoading = true;
         });
-        final currentUserUID = FirebaseAuth.instance.currentUser!.uid;
-        final userData = await FirebaseFirestore.instance
-            .collection('users')
-            .doc(currentUserUID)
-            .get();
-        if (widget.loginAs != userData.data()!['profile']) {
+
+        final userCredentials = await _firebase.signInWithEmailAndPassword(
+            email: _loginData['username']!, password: _loginData['password']!);
+        final currentUser = FirebaseAuth.instance.currentUser;
+
+        if (widget.loginAs == 'Contractor') {
+          userData = await FirebaseFirestore.instance
+              .collection('users')
+              .doc('Category of Users')
+              .collection('Contractor')
+              .doc(currentUser!.uid)
+              .get();
+        } else if (widget.loginAs == 'Subcontractor') {
+          userData = await FirebaseFirestore.instance
+              .collection('users')
+              .doc('Category of Users')
+              .collection('Subcontractor')
+              .doc(currentUser!.uid)
+              .get();
+        }
+
+        final profile = userData.data()!['profile'];
+        if (widget.loginAs != profile) {
+          setState(() {
+            _isLoading = false;
+          });
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content:
                   Text('Login credentials did not match for ${widget.loginAs}'),
             ),
           );
+        } else {
+          setState(() {
+            _isLoading = false;
+          });
+
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => ProjectListScreen()),
+              (route) => false);
+
+          // restartApp();
         }
-        final userCredentials = await _firebase.signInWithEmailAndPassword(
-            email: _loginData['username']!, password: _loginData['password']!);
+      } catch (error) {
         setState(() {
           _isLoading = false;
         });
-        Navigator.of(context).pop();
-      } on FirebaseAuthException catch (error) {
         ScaffoldMessenger.of(context).clearSnackBars();
-        ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(error.message ?? 'Authentication failed')));
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text(error.toString())));
       }
     }
   }

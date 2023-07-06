@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:punch_list/models/project_model.dart';
@@ -9,6 +10,7 @@ import 'package:image_picker/image_picker.dart';
 
 import 'package:punch_list/models/task_model.dart';
 import 'package:punch_list/widgets/image_upload.dart';
+import 'package:select_form_field/select_form_field.dart';
 
 class ShowTasksScreen extends StatefulWidget {
   final Project project;
@@ -24,17 +26,38 @@ class _ShowTasksScreenState extends State<ShowTasksScreen> {
   final taskDescController = TextEditingController();
   File? _selectedImage;
 
-  Subcontractor selectedSubcontractor = Subcontractor(
-    name: 'Moses',
-    email: 'moses@gmail.com',
-    phone: '7355250546',
-  );
+  var selectedSubcontractor;
+  List<Map<String, dynamic>> items = [];
+
+  // Subcontractor selectedSubcontractor = Subcontractor(
+  //   name: 'Moses',
+  //   email: 'moses@gmail.com',
+  //   phone: '7355250546',
+  // );
+
+  void init() {
+    fetchSubcontractorsList();
+    super.initState();
+  }
 
   @override
   void dispose() {
     taskNameController.dispose();
     taskDescController.dispose();
     super.dispose();
+  }
+
+  void fetchSubcontractorsList() async {
+    final userData = FirebaseAuth.instance.currentUser;
+
+    final QuerySnapshot<Map<String, dynamic>> list = await FirebaseFirestore
+        .instance
+        .collection('Subcontractors List')
+        .get();
+
+    for (var documentsnapshot in list.docs) {
+      items.add(documentsnapshot.data()['subcontractor_name']);
+    }
   }
 
   void _showTaskDescription(BuildContext context, String description) {
@@ -56,38 +79,6 @@ class _ShowTasksScreenState extends State<ShowTasksScreen> {
       },
     );
   }
-
-  // Future<void> _takePicture() async {
-  //   final imagePicker = ImagePicker();
-  //   final pickedImage = await imagePicker.pickImage(
-  //     source: ImageSource.camera,
-  //     maxWidth: 600,
-  //   );
-
-  //   if (pickedImage == null) {
-  //     return;
-  //   }
-
-  //   setState(() {
-  //     _takenImage = File(pickedImage.path);
-  //   });
-  // }
-
-  // Future<void> _uploadPicture() async {
-  //   final imagePicker = ImagePicker();
-  //   final pickedImage = await imagePicker.pickImage(
-  //     source: ImageSource.gallery,
-  //     maxWidth: 600,
-  //   );
-
-  //   if (pickedImage == null) {
-  //     return;
-  //   }
-
-  //   setState(() {
-  //     _takenImage = File(pickedImage.path);
-  //   });
-  // }
 
   void _showTaskForm() {
     showModalBottomSheet(
@@ -120,47 +111,50 @@ class _ShowTasksScreenState extends State<ShowTasksScreen> {
                     controller: taskDescController,
                   ),
                   const SizedBox(height: 16.0),
-                  // TextFormField(
-                  //   decoration: const InputDecoration(
-                  //     labelText: 'Upload Task Image',
-                  //   ),
-                  // ),
                   Column(
                     children: [
-                      // TextButton.icon(
-                      //   icon: const Icon(Icons.camera),
-                      //   label: const Text('Take Picture'),
-                      //   onPressed: _takePicture,
-                      // ),
-                      // TextButton.icon(
-                      //   icon: const Icon(Icons.photo),
-                      //   label: const Text('Upload Picture'),
-                      //   onPressed: _uploadPicture,
-                      // ),
                       ImageUpload(onTakenImage: (takenImage) {
                         _selectedImage = takenImage;
                       })
                     ],
                   ),
                   SizedBox(height: 16.0),
-                  // DropdownButtonFormField<Subcontractor>(
-                  //   value: selectedSubcontractor,
-                  //   onChanged: (Subcontractor? newValue) {
-                  //     setState(() {
-                  //       selectedSubcontractor = newValue!;
-                  //     });
-                  //   },
-                  //   items: subcontractor.map<DropdownMenuItem<Subcontractor>>(
-                  //       (Subcontractor subcontractor) {
-                  //     return DropdownMenuItem(
-                  //       value: subcontractor,
-                  //       child: Text(subcontractor.name!),
-                  //     );
-                  //   }).toList(),
-                  //   decoration: InputDecoration(
-                  //     labelText: 'Select Subcontractor',
+                  // SizedBox(
+                  //   height: 50,
+                  //   width: double.infinity,
+                  //   child: SelectFormField(
+                  //     type: SelectFormFieldType.dropdown, // or can be dialog
+                  //     initialValue: 'Subcontractor',
+                  //     icon: const Icon(Icons.construction),
+                  //     labelText: 'Profile',
+                  //     items: items,
+                  //     onChanged: (val) {
+                  //       selectedSubcontractor = val;
+                  //       print(val);
+                  //     },
                   //   ),
                   // ),
+                  DropdownButtonFormField<Map<String, dynamic>>(
+                    value: selectedSubcontractor,
+                    onChanged: (newValue) {
+                      setState(() {
+                        selectedSubcontractor = newValue!;
+                      });
+                    },
+                    onSaved: (newValue) {
+                      selectedSubcontractor = newValue;
+                    },
+                    items: items.map<DropdownMenuItem<Map<String, dynamic>>>(
+                        (subcontractor) {
+                      return DropdownMenuItem(
+                        value: subcontractor,
+                        child: Text('items'),
+                      );
+                    }).toList(),
+                    decoration: InputDecoration(
+                      labelText: 'Select Subcontractor',
+                    ),
+                  ),
                   ElevatedButton(onPressed: _savetask, child: Text('Submit'))
                 ]),
               ));

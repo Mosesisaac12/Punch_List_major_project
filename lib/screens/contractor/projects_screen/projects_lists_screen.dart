@@ -27,7 +27,6 @@ class ProjectListScreenState extends ConsumerState<ProjectListScreen> {
   @override
   void initState() {
     super.initState();
-    // fetchProjects();
   }
 
   @override
