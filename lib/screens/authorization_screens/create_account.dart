@@ -111,11 +111,11 @@ class _CreateAccountState extends State<CreateAccount> {
           'mobile_no': _signupData['mobileNo'],
           'imageUrl': imageUrl
         });
-      } else if (_signupData['group'] == 'Subcontractor') {
+      } else if (_signupData['group'] == 'SubContractor') {
         await FirebaseFirestore.instance
             .collection('users')
             .doc('Category of Users')
-            .collection('Subcontractor')
+            .collection('SubContractor')
             .doc(_userCredentials.user!.uid)
             .set({
           'name': _signupData['fullName'],

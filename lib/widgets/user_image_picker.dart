@@ -20,7 +20,7 @@ class _UserImagePickerState extends State<UserImagePicker> {
     final imagePicker = ImagePicker();
     final pickedImage = await imagePicker.pickImage(
       source: ImageSource.camera,
-      imageQuality: 50,
+      imageQuality: 100,
       maxWidth: 150,
     );
 
@@ -39,7 +39,7 @@ class _UserImagePickerState extends State<UserImagePicker> {
     final imagePicker = ImagePicker();
     final pickedImage = await imagePicker.pickImage(
       source: ImageSource.gallery,
-      imageQuality: 50,
+      imageQuality: 100,
       maxWidth: 150,
     );
 
@@ -81,7 +81,7 @@ class _UserImagePickerState extends State<UserImagePicker> {
               color: Colors.white,
             ),
             label: const Text(
-              'Add Image',
+              'Take Picture',
               style: TextStyle(color: Colors.white),
             ))
       ],

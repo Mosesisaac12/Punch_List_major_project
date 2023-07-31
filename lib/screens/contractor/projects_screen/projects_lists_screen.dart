@@ -2,12 +2,15 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:punch_list/models/project_model.dart';
 import 'package:punch_list/screens/contractor/projects_screen/create_new_project_screen.dart';
 import 'package:punch_list/screens/contractor/projects_screen/project_details_screen.dart';
+import 'package:punch_list/screens/contractor/show_subcontractor_screens/subcontractor_list_screen.dart';
 import 'package:punch_list/widgets/logout.dart';
 
 class ProjectListScreen extends ConsumerStatefulWidget {
@@ -42,10 +45,27 @@ class ProjectListScreenState extends ConsumerState<ProjectListScreen> {
                 return CreateNewProjectScreen();
               }));
             }),
+        IconButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return SubContractorScreen();
+                  },
+                ),
+              );
+            },
+            icon: Icon(Icons.man_2_rounded)),
         Logout()
       ]),
       body: StreamBuilder(
-          stream: FirebaseFirestore.instance.collection('projects').snapshots(),
+          stream: FirebaseFirestore.instance
+              .collection('users')
+              .doc('Category of Users')
+              .collection('Contractor')
+              .doc(FirebaseAuth.instance.currentUser!.uid)
+              .collection('projects')
+              .snapshots(),
           builder: (context, projectsnapShots) {
             if (projectsnapShots.connectionState == ConnectionState.waiting) {
               return CircularProgressIndicator();

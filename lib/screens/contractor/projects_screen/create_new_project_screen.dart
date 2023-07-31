@@ -127,6 +127,10 @@ class CreateNewProjectScreenState
       final user = FirebaseAuth.instance.currentUser!;
 
       await FirebaseFirestore.instance
+          .collection('users')
+          .doc('Category of Users')
+          .collection('Contractor')
+          .doc(user.uid)
           .collection('projects')
           .doc(project.name)
           .set({
@@ -188,7 +192,7 @@ class CreateNewProjectScreenState
                   ),
                 );
               },
-              icon: Icon(Icons.carpenter)),
+              icon: Icon(Icons.man_2_rounded)),
           IconButton(
             onPressed: () {
               FirebaseAuth.instance.signOut();

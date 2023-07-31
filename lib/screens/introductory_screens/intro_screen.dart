@@ -44,7 +44,8 @@ class IntroScreen extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 loginAs = 'Contractor';
-                Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
                   return LoginScreen(
                     loginAs: loginAs!,
                   );
@@ -57,7 +58,8 @@ class IntroScreen extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 loginAs = 'SubContractor';
-                Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
                   return LoginScreen(
                     loginAs: loginAs!,
                   );
@@ -69,7 +71,8 @@ class IntroScreen extends StatelessWidget {
             const SizedBox(height: 30),
             TextButton(
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
                   return const CreateAccount();
                 }));
                 // TODO: Navigate to create account page

@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -21,7 +22,7 @@ class _SubContractorScreenState extends ConsumerState<SubContractorScreen> {
   TextEditingController email = TextEditingController();
   TextEditingController phone = TextEditingController();
   TextEditingController profileImage = TextEditingController();
-
+  var _isLoading = false;
   File? selectedImage;
   @override
   void initState() {
@@ -37,6 +38,9 @@ class _SubContractorScreenState extends ConsumerState<SubContractorScreen> {
   }
 
   void _saveSubcontractor() async {
+    setState(() {
+      _isLoading = true;
+    });
     final isValid = subcontractorFormKey.currentState?.validate();
     if (!isValid!) {
       return;
@@ -56,8 +60,12 @@ class _SubContractorScreenState extends ConsumerState<SubContractorScreen> {
 
       await storageRef.putFile(subcontractors.image!);
       final imageURL = await storageRef.getDownloadURL();
-
+      final currentUser = FirebaseAuth.instance.currentUser;
       await FirebaseFirestore.instance
+          .collection('users')
+          .doc('Category of Users')
+          .collection('Contractor')
+          .doc(currentUser!.uid)
           .collection('Subcontractors List')
           .doc('${subcontractors.email}')
           .set({
@@ -66,71 +74,74 @@ class _SubContractorScreenState extends ConsumerState<SubContractorScreen> {
         'subcontractor_phone': subcontractors.phone,
         'subcontractor_image_url': imageURL
       });
+      setState(() {
+        _isLoading = false;
+      });
       Navigator.of(context).pop();
     }
   }
 
   void _showAddSubcontractorModal() {
     showModalBottomSheet(
-      isScrollControlled: true,
       context: context,
+      isScrollControlled: true,
       builder: (context) => Container(
         padding: const EdgeInsets.all(16),
         child: Form(
           key: subcontractorFormKey,
-          child: SingleChildScrollView(
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              const Text(
-                'Add New Subcontractor',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 16),
-              TextFormField(
-                controller: name,
-                decoration: const InputDecoration(labelText: 'Name'),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter a name';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16),
-              TextFormField(
-                controller: email,
-                decoration: const InputDecoration(labelText: 'Email'),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter an email';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16),
-              TextFormField(
-                controller: phone,
-                decoration: const InputDecoration(labelText: 'Phone Number'),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter a phone number';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16),
-              ImageUpload(onTakenImage: (takenImage) {
-                selectedImage = takenImage;
-              }),
-              SizedBox(height: 16),
-              Center(
-                child: ElevatedButton(
-                  onPressed: _saveSubcontractor,
-                  child: const Text('ADD'),
-                ),
-              ),
-            ]),
-          ),
+          child: Column(children: [
+            const Text(
+              'Add New Subcontractor',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 16),
+            TextFormField(
+              controller: name,
+              decoration: const InputDecoration(labelText: 'Name'),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'Please enter a name';
+                }
+                return null;
+              },
+            ),
+            const SizedBox(height: 16),
+            TextFormField(
+              controller: email,
+              decoration: const InputDecoration(labelText: 'Email'),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'Please enter an email';
+                }
+                return null;
+              },
+            ),
+            const SizedBox(height: 16),
+            TextFormField(
+              keyboardType: TextInputType.number,
+              controller: phone,
+              decoration: const InputDecoration(labelText: 'Phone Number'),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'Please enter a phone number';
+                }
+                return null;
+              },
+            ),
+            const SizedBox(height: 16),
+            ImageUpload(onTakenImage: (takenImage) {
+              selectedImage = takenImage;
+            }),
+            SizedBox(height: 16),
+            Center(
+              child: _isLoading
+                  ? CircularProgressIndicator()
+                  : ElevatedButton(
+                      onPressed: _saveSubcontractor,
+                      child: const Text('ADD'),
+                    ),
+            ),
+          ]),
         ),
       ),
     );
@@ -144,6 +155,10 @@ class _SubContractorScreenState extends ConsumerState<SubContractorScreen> {
       ),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
+            .collection('users')
+            .doc('Category of Users')
+            .collection('Contractor')
+            .doc(FirebaseAuth.instance.currentUser!.uid)
             .collection('Subcontractors List')
             .snapshots(),
         builder: (context, snapshot) {

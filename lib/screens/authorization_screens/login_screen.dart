@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:punch_list/screens/authorization_screens/create_account.dart';
+import 'package:punch_list/screens/subcontractor/show_subcontractor_task.dart';
 import '../../main.dart';
 import '../contractor/projects_screen/projects_lists_screen.dart';
 import 'forgot_password.dart';
@@ -21,10 +22,9 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _loginFormKey = GlobalKey<FormState>();
   final _passwordFocusNode = FocusNode();
-
+  DocumentSnapshot<Map<String, dynamic>>? userData;
   var _isLoading = false;
   String responseToken = '';
-  dynamic userData;
 
   Future<void> restartApp() async {
     await SystemChannels.platform.invokeMethod<void>('SystemNavigator.pop');
@@ -65,36 +65,54 @@ class _LoginScreenState extends State<LoginScreen> {
               .collection('Contractor')
               .doc(currentUser!.uid)
               .get();
-        } else if (widget.loginAs == 'Subcontractor') {
+          String profile = userData!.data()!['profile'];
+          if (widget.loginAs != profile) {
+            setState(() {
+              _isLoading = false;
+            });
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(
+                    'Login credentials did not match for ${widget.loginAs}'),
+              ),
+            );
+          } else {
+            setState(() {
+              _isLoading = false;
+            });
+
+            Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (context) => ProjectListScreen()),
+                (route) => false);
+          }
+        } else if (widget.loginAs == 'SubContractor') {
           userData = await FirebaseFirestore.instance
               .collection('users')
               .doc('Category of Users')
-              .collection('Subcontractor')
+              .collection('SubContractor')
               .doc(currentUser!.uid)
               .get();
-        }
+          String profile = userData!.data()!['profile'];
+          if (widget.loginAs != profile) {
+            setState(() {
+              _isLoading = false;
+            });
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(
+                    'Login credentials did not match for ${widget.loginAs}'),
+              ),
+            );
+          } else {
+            setState(() {
+              _isLoading = false;
+            });
 
-        final profile = userData.data()!['profile'];
-        if (widget.loginAs != profile) {
-          setState(() {
-            _isLoading = false;
-          });
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content:
-                  Text('Login credentials did not match for ${widget.loginAs}'),
-            ),
-          );
-        } else {
-          setState(() {
-            _isLoading = false;
-          });
-
-          Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) => ProjectListScreen()),
-              (route) => false);
-
-          // restartApp();
+            // Navigator.of(context).pushAndRemoveUntil(
+            //     MaterialPageRoute(
+            //         builder: (context) => SubcontractorTaskScreen()),
+            //     (route) => false);
+          }
         }
       } catch (error) {
         setState(() {
